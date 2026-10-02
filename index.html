@@ -1,0 +1,1030 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CopaStickers</title>
+
+<style>
+:root{
+  color-scheme:light dark;
+  --bg:light-dark(#f4f7ff,#0b1020);
+  --surface:light-dark(#fff,#141a2d);
+  --surface2:light-dark(#eef2ff,#1b233b);
+  --text:light-dark(#111827,#f7f9ff);
+  --muted:light-dark(#64748b,#aab4cf);
+  --border:light-dark(#dbe3f3,#303b5a);
+  --green:#19a974;
+  --yellow:#ffd84d;
+  --blue:#2457e6;
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:Inter,system-ui,Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text)
+}
+
+button{font:inherit}
+
+.app{
+  min-height:100vh;
+  background:var(--bg)
+}
+
+header{
+  padding:22px 6%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-bottom:1px solid var(--border);
+  background:var(--surface)
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px
+}
+
+.logo{
+  width:48px;
+  height:48px;
+  border-radius:15px;
+  background:linear-gradient(135deg,var(--green),var(--yellow));
+  display:grid;
+  place-items:center;
+  font-size:25px
+}
+
+.brand h1{
+  margin:0;
+  font-size:24px
+}
+
+.brand small{
+  color:var(--muted)
+}
+
+.cart{
+  border:1px solid var(--border);
+  background:var(--surface2);
+  padding:10px 15px;
+  border-radius:14px;
+  font-weight:800;
+  cursor:pointer
+}
+
+.hero{
+  padding:52px 6% 34px;
+  background:linear-gradient(135deg,#1746c7,#4d7cff 58%,#19a974);
+  color:white
+}
+
+.hero h2{
+  font-size:clamp(34px,6vw,62px);
+  line-height:.95;
+  margin:0 0 14px;
+  max-width:760px
+}
+
+.hero p{
+  max-width:650px;
+  font-size:18px;
+  opacity:.92
+}
+
+.badges{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap
+}
+
+.badge{
+  background:#ffffff22;
+  border:1px solid #ffffff44;
+  padding:8px 12px;
+  border-radius:999px
+}
+
+.content{
+  padding:30px 6%;
+  max-width:1250px;
+  margin:auto
+}
+
+.section-title{
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  gap:15px;
+  margin-bottom:18px
+}
+
+.section-title h3{
+  margin:0;
+  font-size:25px
+}
+
+.section-title span{
+  color:var(--muted)
+}
+
+.products{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  gap:16px
+}
+
+.card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:22px;
+  padding:18px;
+  box-shadow:0 8px 30px #0000000d
+}
+
+.sticker-art{
+  height:150px;
+  border-radius:17px;
+  display:grid;
+  place-items:center;
+  font-size:58px;
+  margin-bottom:14px;
+  background:linear-gradient(135deg,#f6d365,#fda085)
+}
+
+.card:nth-child(2) .sticker-art{
+  background:linear-gradient(135deg,#a8edea,#fed6e3)
+}
+
+.card:nth-child(3) .sticker-art{
+  background:linear-gradient(135deg,#84fab0,#8fd3f4)
+}
+
+.card:nth-child(4) .sticker-art{
+  background:linear-gradient(135deg,#fccb90,#d57eeb)
+}
+
+.card:nth-child(5) .sticker-art{
+  background:linear-gradient(135deg,#f093fb,#f5576c)
+}
+
+.card h4{
+  margin:0 0 5px
+}
+
+.price{
+  font-size:21px;
+  font-weight:900;
+  margin:9px 0
+}
+
+.card button,.primary{
+  width:100%;
+  border:0;
+  border-radius:13px;
+  padding:12px;
+  background:var(--blue);
+  color:white;
+  font-weight:850;
+  cursor:pointer
+}
+
+.card button:hover,.primary:hover{
+  filter:brightness(1.08)
+}
+
+.checkout{
+  margin-top:32px;
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:18px
+}
+
+.panel{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:22px;
+  padding:22px
+}
+
+.panel h3{
+  margin-top:0
+}
+
+.line{
+  display:flex;
+  justify-content:space-between;
+  padding:11px 0;
+  border-bottom:1px solid var(--border)
+}
+
+.total{
+  font-size:24px;
+  font-weight:900;
+  display:flex;
+  justify-content:space-between;
+  padding-top:17px
+}
+
+.qrbox{
+  background:white;
+  border-radius:18px;
+  padding:18px;
+  text-align:center;
+  color:#111;
+  min-height:250px;
+  display:grid;
+  place-items:center
+}
+
+.qrbox img{
+  width:210px;
+  height:210px;
+  image-rendering:auto
+}
+
+.notice{
+  margin-top:12px;
+  font-size:13px;
+  color:var(--muted)
+}
+
+.empty{
+  color:var(--muted);
+  padding:15px 0
+}
+
+.toast{
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  background:#111827;
+  color:white;
+  padding:13px 17px;
+  border-radius:13px;
+  opacity:0;
+  transform:translateY(10px);
+  transition:.2s;
+  pointer-events:none
+}
+
+.toast.show{
+  opacity:1;
+  transform:none
+}
+
+@media(max-width:760px){
+  header{
+    padding:16px 4%
+  }
+
+  .hero,.content{
+    padding-left:4%;
+    padding-right:4%
+  }
+
+  .checkout{
+    grid-template-columns:1fr
+  }
+
+  .hero{
+    padding-top:38px
+  }
+
+  .hero h2{
+    font-size:43px
+  }
+}
+</style>
+</head>
+
+<body>
+<div class="app">
+
+<header>
+  <div class="brand">
+    <div class="logo">⚽</div>
+    <div>
+      <h1>CopaStickers</h1>
+      <small>colecione. troque. complete.</small>
+    </div>
+  </div>
+
+  <button class="cart" onclick="scrollToCart()">
+    🛒 Carrinho (<span id="count">0</span>)
+  </button>
+</header>
+
+<section class="hero">
+  <div class="badges">
+    <span class="badge">🏆 Coleção Copa</span>
+    <span class="badge">✨ Figurinhas especiais</span>
+    <span class="badge">⚡ QR Code instantâneo</span>
+  </div>
+
+  <h2>Monte seu álbum dos sonhos.</h2>
+
+  <p>
+    Escolha suas figurinhas, coloque no carrinho e gere o pagamento direto aqui na página.
+  </p>
+</section>
+
+<main class="content">
+
+<div class="section-title">
+  <div>
+    <h3>🔥 Figurinhas em destaque</h3>
+    <span>Escolha suas favoritas</span>
+  </div>
+</div>
+
+<div class="products" id="products"></div>
+
+<div class="checkout" id="cartSection">
+
+<section class="panel">
+  <h3>🛒 Seu carrinho</h3>
+  <div id="cart"></div>
+
+  <div class="total">
+    <span>Total</span>
+    <span id="total">R$ 0,00</span>
+  </div>
+</section>
+
+<section class="panel">
+  <h3>💳 Pagamento</h3>
+
+  <div style="display:flex;gap:8px;margin-bottom:14px">
+
+    <button
+      id="pixTab"
+      onclick="showPayment('pix')"
+      style="flex:1;border:1px solid var(--border);border-radius:12px;padding:11px;background:var(--blue);color:white;font-weight:850;cursor:pointer">
+      📱 PIX
+    </button>
+
+    <button
+      id="cardTab"
+      onclick="showPayment('card')"
+      style="flex:1;border:1px solid var(--border);border-radius:12px;padding:11px;background:var(--surface2);color:var(--text);font-weight:850;cursor:pointer">
+      💳 Cartão
+    </button>
+
+  </div>
+
+  <div id="pixPayment">
+    <div class="qrbox" id="qr">
+      <div>
+        Adicione alguma figurinha ao carrinho para gerar o QR Code.
+      </div>
+    </div>
+  </div>
+
+  <div id="cardPayment" style="display:none">
+
+    <div id="cardChoice">
+
+      <h4 style="margin:0 0 10px">
+        Como você quer pagar?
+      </h4>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+
+        <button
+          onclick="selectCardType('debit')"
+          style="padding:18px;border:1px solid var(--border);border-radius:14px;background:var(--surface2);color:var(--text);font-weight:900;cursor:pointer">
+          💳 Débito
+        </button>
+
+        <button
+          onclick="selectCardType('credit')"
+          style="padding:18px;border:1px solid var(--border);border-radius:14px;background:var(--surface2);color:var(--text);font-weight:900;cursor:pointer">
+          💳 Crédito
+        </button>
+
+      </div>
+    </div>
+
+    <div id="cardForm" style="display:none">
+
+      <div style="display:grid;gap:12px">
+
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <strong id="cardTypeTitle">💳 Cartão</strong>
+
+          <button
+            onclick="backToCardChoice()"
+            style="border:0;background:none;color:var(--blue);font-weight:800;cursor:pointer">
+            ← Trocar
+          </button>
+        </div>
+
+        <label style="font-weight:800">
+          Número do cartão
+          <input
+            id="cardNumber"
+            inputmode="numeric"
+            autocomplete="cc-number"
+            placeholder="0000 0000 0000 0000"
+            maxlength="19"
+            style="width:100%;margin-top:6px;padding:12px;border:1px solid var(--border);border-radius:11px;background:var(--surface);color:var(--text)">
+        </label>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+
+          <label style="font-weight:800">
+            Validade
+            <input
+              inputmode="numeric"
+              autocomplete="cc-exp"
+              placeholder="MM/AA"
+              maxlength="5"
+              style="width:100%;margin-top:6px;padding:12px;border:1px solid var(--border);border-radius:11px;background:var(--surface);color:var(--text)">
+          </label>
+
+          <label style="font-weight:800">
+            CVV
+            <input
+              inputmode="numeric"
+              autocomplete="cc-csc"
+              placeholder="123"
+              maxlength="4"
+              style="width:100%;margin-top:6px;padding:12px;border:1px solid var(--border);border-radius:11px;background:var(--surface);color:var(--text)">
+          </label>
+
+        </div>
+
+        <label style="font-weight:800">
+          Nome no cartão
+          <input
+            autocomplete="cc-name"
+            placeholder="Nome completo"
+            style="width:100%;margin-top:6px;padding:12px;border:1px solid var(--border);border-radius:11px;background:var(--surface);color:var(--text)">
+        </label>
+
+        <button class="primary" onclick="cardDemo()">
+          Pagar com cartão
+        </button>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+</div>
+
+</main>
+
+<div class="toast" id="toast"></div>
+
+</div><script>
+const products = [
+  {id:1,name:"Craque da Seleção",price:2.50,emoji:"⚽"},
+  {id:2,name:"Estrela Mundial",price:3.50,emoji:"⭐"},
+  {id:3,name:"Lenda da Copa",price:4.50,emoji:"🏆"},
+  {id:4,name:"Escudo Dourado",price:5.00,emoji:"🥇"},
+  {id:5,name:"Figurinha Especial",price:7.00,emoji:"💎"}
+];
+
+let cart = JSON.parse(localStorage.getItem("copastickers-cart") || "[]");
+
+const money = value =>
+  value.toLocaleString("pt-BR", {
+    style:"currency",
+    currency:"BRL"
+  });
+
+function renderProducts(){
+  document.getElementById("products").innerHTML =
+    products.map(p => `
+      <article class="card">
+        <div class="sticker-art">${p.emoji}</div>
+        <h4>${p.name}</h4>
+        <div class="price">${money(p.price)}</div>
+        <button onclick="add(${p.id})">
+          Adicionar ao carrinho
+        </button>
+      </article>
+    `).join("");
+}
+
+function add(id){
+  const item = cart.find(x => x.id === id);
+
+  if(item){
+    item.qty++;
+  }else{
+    cart.push({
+      id:id,
+      qty:1
+    });
+  }
+
+  save();
+  toast("Figurinha adicionada! ⚽");
+}
+
+function remove(id){
+  cart = cart.filter(x => x.id !== id);
+  save();
+}
+
+function change(id,delta){
+  const item = cart.find(x => x.id === id);
+
+  if(!item) return;
+
+  item.qty += delta;
+
+  if(item.qty <= 0){
+    remove(id);
+    return;
+  }
+
+  save();
+}
+
+function save(){
+  localStorage.setItem(
+    "copastickers-cart",
+    JSON.stringify(cart)
+  );
+
+  renderCart();
+}
+
+function renderCart(){
+
+  const cartElement =
+    document.getElementById("cart");
+
+  const count =
+    cart.reduce((sum,item) => sum + item.qty,0);
+
+  document.getElementById("count").textContent = count;
+
+  if(!cart.length){
+
+    cartElement.innerHTML =
+      `<div class="empty">
+        Seu carrinho está vazio 😭
+      </div>`;
+
+    document.getElementById("total").textContent =
+      money(0);
+
+    document.getElementById("qr").innerHTML =
+      `<div>
+        Adicione alguma figurinha ao carrinho
+        para gerar o QR Code.
+      </div>`;
+
+    return;
+  }
+
+  let total = 0;
+
+  cartElement.innerHTML =
+    cart.map(item => {
+
+      const product =
+        products.find(p => p.id === item.id);
+
+      if(!product) return "";
+
+      const subtotal =
+        product.price * item.qty;
+
+      total += subtotal;
+
+      return `
+        <div class="line">
+
+          <span>
+            ${product.emoji}
+            ${product.name}
+            × ${item.qty}
+          </span>
+
+          <span>
+            ${money(subtotal)}
+
+            <button
+              onclick="change(${item.id},-1)"
+              style="border:0;background:none;cursor:pointer">
+              ➖
+            </button>
+
+            <button
+              onclick="change(${item.id},1)"
+              style="border:0;background:none;cursor:pointer">
+              ➕
+            </button>
+          </span>
+
+        </div>
+      `;
+    }).join("");
+
+  document.getElementById("total").textContent =
+    money(total);
+
+  generateQR(total);
+}
+
+function generateQR(total){
+
+  const qr =
+    document.getElementById("qr");
+
+  qr.innerHTML = `
+    <div>
+      <div style="
+        font-size:80px;
+        line-height:1;
+        margin-bottom:10px">
+        ▦
+      </div>
+
+      <strong>
+        QR Code do pedido
+      </strong>
+
+      <div style="margin-top:8px">
+        Total: ${money(total)}
+      </div>
+
+      <div class="notice">
+        O pagamento real será conectado
+        ao Mercado Pago.
+      </div>
+    </div>
+  `;
+}
+
+function toast(message){
+
+  const element =
+    document.getElementById("toast");
+
+  element.textContent = message;
+
+  element.classList.add("show");
+
+  setTimeout(() => {
+    element.classList.remove("show");
+  },1400);
+}
+
+function scrollToCart(){
+
+  document
+    .getElementById("cartSection")
+    .scrollIntoView({
+      behavior:"smooth"
+    });
+}
+
+renderProducts();
+renderCart();
+</script><script>
+const selecoes = [
+["🇩🇿","Argélia","ALG"],
+["🇦🇷","Argentina","ARG"],
+["🇦🇺","Austrália","AUS"],
+["🇦🇹","Áustria","AUT"],
+["🇧🇪","Bélgica","BEL"],
+["🇧🇦","Bósnia e Herzegovina","BIH"],
+["🇧🇷","Brasil","BRA"],
+["🇨🇦","Canadá","CAN"],
+["🇨🇮","Costa do Marfim","CIV"],
+["🇨🇩","RD Congo","COD"],
+["🇨🇴","Colômbia","COL"],
+["🇨🇻","Cabo Verde","CPV"],
+["🇭🇷","Croácia","CRO"],
+["🇨🇼","Curaçao","CUW"],
+["🇨🇿","Chéquia","CZE"],
+["🇪🇨","Equador","ECU"],
+["🇪🇬","Egito","EGY"],
+["🏴","Inglaterra","ENG"],
+["🇪🇸","Espanha","ESP"],
+["🇫🇷","França","FRA"],
+["🇩🇪","Alemanha","GER"],
+["🇬🇭","Gana","GHA"],
+["🇭🇹","Haiti","HAI"],
+["🇮🇷","Irã","IRN"],
+["🇮🇶","Iraque","IRQ"],
+["🇯🇴","Jordânia","JOR"],
+["🇯🇵","Japão","JPN"],
+["🇰🇷","Coreia do Sul","KOR"],
+["🇸🇦","Arábia Saudita","KSA"],
+["🇲🇦","Marrocos","MAR"],
+["🇲🇽","México","MEX"],
+["🇳🇱","Países Baixos","NED"],
+["🇳🇴","Noruega","NOR"],
+["🇳🇿","Nova Zelândia","NZL"],
+["🇵🇦","Panamá","PAN"],
+["🇵🇾","Paraguai","PAR"],
+["🇵🇹","Portugal","POR"],
+["🇶🇦","Catar","QAT"],
+["🇿🇦","África do Sul","RSA"],
+["🏴","Escócia","SCO"],
+["🇸🇳","Senegal","SEN"],
+["🇨🇭","Suíça","SUI"],
+["🇸🇪","Suécia","SWE"],
+["🇹🇳","Tunísia","TUN"],
+["🇹🇷","Turquia","TUR"],
+["🇺🇾","Uruguai","URU"],
+["🇺🇸","Estados Unidos","USA"],
+["🇺🇿","Uzbequistão","UZB"]
+];
+
+const precosEspeciais = {
+  ARG:{17:25},
+  BRA:{14:20,15:15,19:12,21:12},
+  BEL:{15:12},
+  CRO:{8:15},
+  ENG:{11:18,18:18},
+  ESP:{11:16,15:20},
+  EGY:{17:18},
+  FRA:{20:22},
+  GER:{15:16},
+  KOR:{18:18},
+  MAR:{4:15},
+  MEX:{15:12},
+  NED:{15:12},
+  NOR:{15:20},
+  POR:{15:22},
+  USA:{16:12},
+  URU:{15:14}
+};
+
+function precoAlbum(codigo,numero){
+  if(precosEspeciais[codigo] &&
+     precosEspeciais[codigo][numero]){
+    return precosEspeciais[codigo][numero];
+  }
+
+  if(numero === 1){
+    return 5;
+  }
+
+  return 1.5;
+}
+
+const album = document.createElement("section");
+
+album.className = "panel";
+album.style.marginTop = "24px";
+
+album.innerHTML = `
+  <div class="section-title">
+    <div>
+      <h3>🌎 Álbum Copa 2026</h3>
+      <span>20 figurinhas por seleção</span>
+    </div>
+  </div>
+
+  <div
+    id="albumGrid"
+    style="
+      display:grid;
+      gap:10px;
+    ">
+  </div>
+`;
+
+document
+  .querySelector(".checkout")
+  .before(album);
+
+const albumGrid =
+  document.getElementById("albumGrid");
+
+function adicionarFigurinha(
+  codigo,
+  numero,
+  selecao
+){
+
+  const id =
+    "album-" + codigo + "-" + numero;
+
+  const preco =
+    precoAlbum(codigo,numero);
+
+  const existente =
+    cart.find(item => item.id === id);
+
+  if(existente){
+
+    existente.qty++;
+
+  }else{
+
+    cart.push({
+      id:id,
+      name:
+        codigo +
+        " " +
+        numero +
+        " — " +
+        selecao,
+      price:preco,
+      qty:1,
+      emoji:
+        numero === 1
+          ? "🥇"
+          : numero === 13
+            ? "📸"
+            : "⚽"
+    });
+
+  }
+
+  save();
+
+  toast(
+    "Figurinha " +
+    codigo +
+    " " +
+    numero +
+    " adicionada! ⚽"
+  );
+}
+
+albumGrid.innerHTML =
+  selecoes.map(([flag,nome,codigo]) => {
+
+    return `
+      <details
+        style="
+          background:var(--surface2);
+          border:1px solid var(--border);
+          border-radius:14px;
+          padding:12px;
+        ">
+
+        <summary
+          style="
+            cursor:pointer;
+            font-weight:900;
+          ">
+
+          ${flag}
+          ${nome}
+
+          <small
+            style="
+              color:var(--muted);
+              margin-left:5px;
+            ">
+            ${codigo}
+          </small>
+
+        </summary>
+
+        <div
+          style="
+            display:flex;
+            flex-wrap:wrap;
+            gap:6px;
+            margin-top:12px;
+          ">
+
+          ${Array.from(
+            {length:20},
+            (_,index) => {
+
+              const numero =
+                index + 1;
+
+              const preco =
+                precoAlbum(
+                  codigo,
+                  numero
+                );
+
+              return `
+                <button
+                  onclick="
+                    adicionarFigurinha(
+                      '${codigo}',
+                      ${numero},
+                      '${nome}'
+                    )
+                  "
+                  title="
+                    Adicionar por
+                    ${money(preco)}
+                  "
+                  style="
+                    min-width:58px;
+                    min-height:44px;
+                    border-radius:9px;
+                    border:1px solid var(--border);
+                    background:var(--surface);
+                    color:var(--text);
+                    cursor:pointer;
+                    font-weight:850;
+                  ">
+
+                  ${codigo} ${numero}
+
+                  <small
+                    style="
+                      display:block;
+                      font-size:10px;
+                      color:var(--muted);
+                    ">
+
+                    ${money(preco)}
+
+                  </small>
+
+                </button>
+              `;
+
+            }
+          ).join("")}
+
+        </div>
+
+        <div
+          style="
+            margin-top:10px;
+            font-size:12px;
+            color:var(--muted);
+          ">
+
+          #1 = escudo • #13 = foto •
+          demais = R$ 1,50 •
+          craques têm preço especial
+
+        </div>
+
+      </details>
+    `;
+
+  }).join("");
+</script><style>
+#albumNumbers details summary::-webkit-details-marker{
+  color:var(--blue);
+}
+
+#albumNumbers button:hover{
+  transform:translateY(-2px);
+  filter:brightness(1.08);
+}
+
+#albumNumbers button{
+  transition:.15s;
+}
+
+@media(max-width:600px){
+  #albumNumbers{
+    grid-template-columns:1fr !important;
+  }
+}
+</style>
+
+<script>
+/* Ajustes finais */
+
+document.addEventListener("DOMContentLoaded",()=>{
+
+  const buttons =
+    document.querySelectorAll(
+      "#albumNumbers button"
+    );
+
+  buttons.forEach(button=>{
+    button.addEventListener(
+      "mouseenter",
+      ()=>{
+        button.style.transform =
+          "translateY(-2px)";
+      }
+    );
+
+    button.addEventListener(
+      "mouseleave",
+      ()=>{
+        button.style.transform =
+          "translateY(0)";
+      }
+    );
+  });
+
+});
+</script>
+
+</body>
+</html>
